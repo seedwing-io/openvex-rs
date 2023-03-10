@@ -1,6 +1,6 @@
 [package]
 name = "openvex"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "Rust types for the OpenVEX format"
 license = "Apache-2.0"
