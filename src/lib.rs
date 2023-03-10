@@ -3,7 +3,7 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
 /// The VEX type represents a VEX document and all of its contained information.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 pub struct OpenVex {
     #[serde(flatten)]
     pub metadata: Metadata,
@@ -12,7 +12,7 @@ pub struct OpenVex {
 }
 
 /// The Metadata type represents the metadata associated with a VEX document.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 pub struct Metadata {
     /// Context is the URL pointing to the jsonld context definition
     #[serde(rename = "@context")]
@@ -54,7 +54,7 @@ pub struct Metadata {
 /// A Statement is a declaration conveying a single [status] for a single
 /// [vul_id] for one or more [product_id]s. A VEX Statement exists within a VEX
 /// Document.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 pub struct Statement {
     /// [vul_id] SHOULD use existing and well known identifiers, for example:
     /// CVE, the Global Security Database (GSD), or a supplier’s vulnerability
@@ -117,7 +117,7 @@ pub struct Statement {
 
 /// Status describes the exploitability status of a component with respect to a
 /// vulnerability.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, Copy, Clone, PartialEq)]
 pub enum Status {
     /// NotAffected means no remediation or mitigation is required.
     #[serde(rename = "not_affected")]
@@ -138,7 +138,7 @@ pub enum Status {
 
 /// Justification describes why a given component is not affected by a
 /// vulnerability.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Copy, Clone, PartialEq)]
 pub enum Justification {
     /// ComponentNotPresent means the vulnerable component is not included in the artifact.
     ///
